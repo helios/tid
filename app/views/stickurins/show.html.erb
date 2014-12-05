@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Proteinuria,:</strong>
+  <%= @stickurin.proteinuria, %>
+</p>
+
+<p>
+  <strong>Ematuria:</strong>
+  <%= @stickurin.ematuria %>
+</p>
+
+<%= link_to 'Edit', edit_stickurin_path(@stickurin) %> |
+<%= link_to 'Back', stickurins_path %>

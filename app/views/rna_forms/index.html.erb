@@ -1,0 +1,100 @@
+<head>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+    <!-- Optional theme -->
+     <link href="vendor/assets/stylesheets/bootstrap-tokenfield.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.1/typeahead.bundle.min.js"></script>
+  <script src="vendor/assets/javascripts/bootstrap-tokenfield.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js" ></script> 
+  <script src="vendor/assets/javascripts/bootstrap-tokenfield.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js" ></script> 
+       <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
+   <script type="text/javascript" src="http://mottie.github.io/tablesorter/js/jquery.tablesorter.widgets.js"></script>
+
+
+  </head> 
+    <body>
+    	
+	
+<div id="scrollable-dropdown-menu" class="col-md-8">
+	
+  
+ <%= form_tag rna_forms_path, :method => :get do %><%= text_field_tag :query_rnaId, 
+ 	params[:query_rnaId], autocomplete: "off", placeholder: "search" %>
+ 	</div>
+<%= submit_tag "   Search   ", :name => nil %>
+<% end %>
+<% 2.times do %> 
+<br></br>
+  <% end %> 
+	 <div class="col-md-8"></div>
+<div><%= link_to 'New RNA form', new_rna_form_path %></div>
+
+
+
+
+  
+<div class="col-md-8">
+<table id="myTable" class="table table-striped"><head>
+
+  <thead>
+    <tr>
+      <th>Sorting date</th>
+      <th>No. cells</th>
+      <th>Cell type</th>
+      <th>No. aliquots</th>
+      <th>Cells per aliquot</th>
+      <th>Purity</th>
+      <th>Vol. buffer per aliquot</th>
+      <th>No. aliquots RNA isolation</th>
+      <th>RNA isolation date</th>
+      <th>RNA id</th>
+      <th>Vol. dilution</th>
+      <th>RNA conc.</th>
+      <th>Total cells</th>
+      <th>ng. total</th>
+      <th>ng. used</th>
+      <th>ng. remaining</th>
+      <th>Operator</th>
+      <th>Sample index</th>
+      <th>Sample id</th>
+      
+    </tr>
+  </thead>
+ <% if  @rna_forms %>
+  <tbody>
+    <% @rna_forms.each do |rna_form| %>
+      <tr>
+        <td><%= rna_form.sortingDate %></td>
+        <td><%= rna_form.noCells %></td>
+        <td><%= rna_form.cell.label if rna_form.cell %></td>
+        <td><%= rna_form.noAliquots %></td>
+        <td><%= rna_form.cellsPerAliquot %></td>
+        <td><%= rna_form.purity %></td>
+        <td><%= rna_form.volBufferPerAliquot %></td>
+        <td><%= rna_form.noAliquotsRnaIsolation %></td>
+        <td><%= rna_form.rnaIsolationDate %></td>
+        <td><%= rna_form.rnaId %></td>
+        <td><%= rna_form.volDilution %></td>
+        <td><%= rna_form.rnaConc %></td>
+        <td><%= rna_form.totalCells %></td>
+        <td><%= rna_form.ngTotal %></td>
+        <td><%= rna_form.ngUsed %></td>
+        <td><% if rna_form.ngTotal? %> <%= rna_form.available %> <% end %></td>
+        <td><%= rna_form.operator %></td>
+        <td><%= rna_form.sampleIndex %></td>
+        <td><%= rna_form.sampleId %></td>
+        <td><%= link_to 'Show', rna_form %></td>
+        <td><%= link_to 'Edit', edit_rna_form_path(rna_form) %></td>
+        <td><%= link_to 'Destroy', rna_form, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <% end %>
+</table>
+
+<br>
+

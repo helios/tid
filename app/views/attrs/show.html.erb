@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @attr.name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @attr.type %>
+</p>
+
+<%= link_to 'Edit', edit_attr_path(@attr) %> |
+<%= link_to 'Back', attrs_path %>

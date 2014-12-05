@@ -1,0 +1,78 @@
+<head>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+    <!-- Optional theme -->
+     <link href="vendor/assets/stylesheets/bootstrap-tokenfield.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.1/typeahead.bundle.min.js"></script>
+  <script src="vendor/assets/javascripts/bootstrap-tokenfield.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js" ></script> 
+  <script src="vendor/assets/javascripts/bootstrap-tokenfield.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js" ></script> 
+       <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
+   <script type="text/javascript" src="http://mottie.github.io/tablesorter/js/jquery.tablesorter.widgets.js"></script>
+
+
+  </head> 
+    <body>
+	
+	 <div id="scrollable-dropdown-menu" class="col-md-5">
+ <%= form_tag generators_path, :method => :get do %><%= text_field_tag :query_generator, 
+ 	params[:query_generator], autocomplete: "off", placeholder: "leave blank to see all models" %>
+</div>
+
+<%= submit_tag "   Search   ", :name => nil %>
+<% end %>
+<br>
+<br>
+ <div class="col-md-2">
+<%= link_to 'Add model', new_generator_path %>
+</div>
+ 
+<br>
+<br>
+<div class="col-md-2"></div>
+<table id="myTable" class="table table-striped"><head>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Fields</th>
+      <th>Referenced models</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @generators.each do |generator| %>
+
+      <tr>
+        <td><%= generator.name %></td>
+        
+     <th><% generator.attrs.each do |att| %>
+        	<%= att.name %>
+        	<%= att.type %><br>
+        	<% end %></th>     	
+        <th><% generator.refgenerators_ids.first.split(', ').each do |ref|%>
+        	<%= ref %>
+        	
+        	<%= link_to "view",  :controller => "generators", :query_generators => ref %><br>
+            <br>
+        	<% end %></th>
+   <th><%= generator.notes if generator.notes %>
+ <td><%= link_to 'Show Model', generator %></td>
+        <td><%= link_to 'Edit Model', edit_generator_path(generator) %></td>
+        <td><%= link_to 'Destroy Model', generator, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'New entity', "/#{generator.name.pluralize}/new" %></td>
+        <td><%= link_to 'view all', "/#{generator.name.pluralize}" %></td>
+      </tr>
+      </tr>
+       
+    <% end %>
+
+  </tbody>
+</table>
+
+</body>
+

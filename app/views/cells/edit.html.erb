@@ -1,0 +1,7 @@
+<h1>Editing cell type</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Destroy', @cell, method: :delete, data: { confirm: 'Are you sure?' } %>|
+<%= link_to "New cell type", new_cell_path %> | 
+ <%= link_to "View all cell types", cells_path %> 

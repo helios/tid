@@ -1,0 +1,107 @@
+<%= form_for(@patient) do |f| %>
+  <% if @patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+
+      <ul>
+      <% @patient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  
+
+  <div class="field">
+    <%= f.label :histology_number %><br>
+    <%= f.text_field :histology_number %>
+  </div>
+  <div class="field">
+    <%= f.label :patient_id %><br>
+    <%= f.text_field :patient_id %>
+  </div>
+  <div class="field">
+    <%= f.label :date_of_birth %><br>
+    <%= f.text_field :date_of_birth %>
+  </div>
+  <div class="field">
+    <%= f.label :gender %><br>
+    <%= f.select :gender, ["",  "F", "M"] %>
+  </div>
+  <div class="field">
+    <%= f.label :smoker %><br>
+    <%= f.select :smoker, [ "", "YES", "NO"] %>
+  </div>
+  <div class="field">
+    <%= f.label :date_of_biopsy %><br>
+    <%= f.text_field :date_of_biopsy %>
+  </div>
+  <div class="field">
+    <%= f.label :distance %><br>
+    <%= f.text_field :distance %>
+  </div>
+ 
+   <div >
+  	<%= f.collection_select(:firstclassification_id, Firstclassification.all, :id, :name, :selected => @patient.firstclassification, :prompt => "--  Select First classification --") %>
+   <%= link_to "add classification", new_firstclassification_path, :target => "_blank"%> |
+  <%= link_to "view or edit classification", firstclassifications_path, :target => "_blank" %>
+   </div>
+<br>
+ <div class="field">
+ 		<%= f.label :Second_classification %><br>
+     <%= f.grouped_collection_select(:secondclassification_id, Firstclassification.all, :secondclassifications, :name, :id, :name,  
+    :selected => @patient.secondclassification, :prompt => "-- Select second classification--" ) %>
+ </div>
+
+
+<br>
+<div class="field">
+ <%= f.label "T_primary_tumor_id" %><br />
+  <%= f.collection_select :tprimarytumor, Tprimarytumor.all, :id, :name, :prompt => ""  %> 
+  <%= link_to "add options ", new_tprimarytumor_path, :target => "_blank" %>
+  </div>
+</div>
+
+<div class="field">
+ <%= f.label :N_regional_lymph_nodes_id %><br />
+  <%= f.collection_select :nregionallymphnode, Nregionallymphnode.all, :id, :name, :prompt => "" %>
+  <%= link_to "add options ", new_nregionallymphnode_path, :target => "_blank" %>
+</div>
+
+<div class="field">
+ <%= f.label :M_distant_metastasis_id %><br />
+  <%= f.collection_select :mdistantmetastasi, Mdistantmetastasi.all, :id, :name, :prompt => "" %>
+  <%= link_to "add options ", new_mdistantmetastasi_path, :target => "_blank" %>
+</div>
+
+<div class="field">
+ <%= f.label :G_histopathological_grading_id %><br />
+  <%= f.collection_select :grading, Grading.all, :id, :name, :prompt => "" %>
+  <%= link_to "add options ", new_grading_path, :target => "_blank" %>
+</div>
+
+
+<%= f.fields_for :therapies do |builder| %>
+    <%= render "therapy_fields", :f => builder %>
+    <%= link_to_add_fields "Add Therapy", f, :therapies %>
+  <% end %>
+
+
+<br></br>
+
+
+<%= f.fields_for :pathologies do |builder| %>
+    <%= render "pathology_fields", :f => builder %>
+    <%= link_to_add_fields "Add Pathology", f, :pathologies %>
+  <% end %>
+
+<br></br>
+
+
+ <div class="actions">
+    <%= f.submit %>
+  </div>
+
+  <% end %>
+

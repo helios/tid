@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Proteinuria:</strong>
+  <%= @pathologicalurin.proteinuria %>
+</p>
+
+<p>
+  <strong>Creatinuria:</strong>
+  <%= @pathologicalurin.creatinuria %>
+</p>
+
+<p>
+  <strong>Ratio:</strong>
+  <%= @pathologicalurin.ratio %>
+</p>
+
+<p>
+  <strong>Ematuria:</strong>
+  <%= @pathologicalurin.ematuria %>
+</p>
+
+<%= link_to 'Edit', edit_pathologicalurin_path(@pathologicalurin) %> |
+<%= link_to 'Back', pathologicalurins_path %>

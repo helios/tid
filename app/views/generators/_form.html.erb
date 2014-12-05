@@ -1,0 +1,36 @@
+<%= form_for(@generator) do |f| %>
+  <% if @generator.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@generator.errors.count, "error") %> prohibited this generator from being saved:</h2>
+
+      <ul>
+      <% @generator.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <h4>Fields:</h4>
+  <%= f.fields_for :attrs do |builder| %>
+    <%= render "attr_fields", :f => builder %>
+    <%= link_to_add_fields "Add Field", f, :attrs %>
+  <% end %>
+
+ 	<div id="scrollable-dropdown-menu" >
+<%= f.label :associated_Models %><br>
+<%= text_field_tag "generator[refgenerators_ids][]", params[:refgenerators_ids], :array => true, 
+    autocomplete: "off", placeholder: "insert model name" %>
+</div>
+<div>
+	<%= f.label :notes %><br>
+	<%= f.text_area :notes %>
+</div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

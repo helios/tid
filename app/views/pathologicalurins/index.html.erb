@@ -1,0 +1,31 @@
+<h1>Listing pathologicalurins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Proteinuria</th>
+      <th>Creatinuria</th>
+      <th>Ratio</th>
+      <th>Ematuria</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pathologicalurins.each do |pathologicalurin| %>
+      <tr>
+        <td><%= pathologicalurin.proteinuria %></td>
+        <td><%= pathologicalurin.creatinuria %></td>
+        <td><%= pathologicalurin.ratio %></td>
+        <td><%= pathologicalurin.ematuria %></td>
+        <td><%= link_to 'Show', pathologicalurin %></td>
+        <td><%= link_to 'Edit', edit_pathologicalurin_path(pathologicalurin) %></td>
+        <td><%= link_to 'Destroy', pathologicalurin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pathologicalurin', new_pathologicalurin_path %>

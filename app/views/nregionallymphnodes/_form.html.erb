@@ -1,0 +1,21 @@
+<%= form_for(@nregionallymphnode) do |f| %>
+  <% if @nregionallymphnode.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@nregionallymphnode.errors.count, "error") %> prohibited this nregionallymphnode from being saved:</h2>
+
+      <ul>
+      <% @nregionallymphnode.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :N_stage %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit "send"%>
+  </div>
+<% end %>

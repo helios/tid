@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>T stage:</strong>
+  <%= @tprimarytumor.name %>
+</p>
+
+<%= link_to 'Edit', edit_tprimarytumor_path(@tprimarytumor) %> |
+<%= link_to 'Destroy', @tprimarytumor, method: :delete, data: { confirm: 'Are you sure?' } %>  |
+<%= link_to 'View all T stages', tprimarytumors_path %> |
+<%= link_to 'New T stage', new_tprimarytumor_path %> |
+<%= link_to 'New patient', new_patient_path %>

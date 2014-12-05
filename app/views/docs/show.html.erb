@@ -1,0 +1,68 @@
+<br>
+<p>
+  <strong>Title:</strong>
+  <% if @doc.file_type? %>
+  <%= @doc.file_type.label %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Operator:</strong>
+  <%= @doc.researcher %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @doc.date %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @doc.comment %>
+</p>
+
+<b> Tags: </b><br>
+   <%= @doc.tags %>
+<br/ >
+<br/ >
+   <p>
+	 <b> RNA ID: </b><br>
+   <% @doc.rna_forms_ids.first.split(', ').each do |rna| %>
+   <%= rna %>
+   <% RnaForm.where(rnaId: rna) %>
+   <%= link_to "view",  :controller => "rna_forms", :query_rnaId => rna %><br>
+    <% end %>
+</p>
+   <p>
+	 <b> Sample ID: </b><br>
+	 <% if @doc.samples %>
+   <% @doc.samples.each do |sample| %>
+   <%= sample %>
+
+  <%= link_to "view",  :controller => "rna_forms", :query_rnaId => sample %><br>
+   <% end %>
+   <% end %>
+</p>
+<p>
+	 <b> Sample sheet: </b><br>
+   <% @doc.sample_sheets_ids.first.split(', ').each do |rna| %>
+   <%= rna %>
+   <% SampleSheet.where(fcid: rna) %>
+  <%= link_to "view",  :controller => "sample_sheets", :query_sample_sheet => rna %><br>
+  
+   <% end %>
+
+ <% @doc.sample_sheets.each do |samplesheet| %>
+ <%= samplesheet.fcid %>
+ <% end %>
+</p>
+
+
+
+<%= link_to image_tag(@doc.doc.url(:small)), @doc.doc.url(:original) %>
+
+<br>
+<%= link_to 'Edit', edit_doc_path(@doc) %> |
+<%= link_to 'Destroy', @doc, method: :delete, data: { confirm: 'Are you sure?' } %>  |
+<%= link_to 'Upload new document', new_doc_path %> |
+<%= link_to 'View all documents', docs_path %> |

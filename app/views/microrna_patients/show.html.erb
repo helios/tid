@@ -1,0 +1,80 @@
+
+
+<p>
+  <strong>Code:</strong>
+  <%= @microrna_patient.idCode %>
+</p>
+<p>
+  <strong>Data di nascita:</strong>
+  <%= @microrna_patient.datebirth %>
+</p>
+
+<p>
+  <strong>Sesso:</strong>
+  <%= @microrna_patient.gender %>
+</p>
+
+<p>
+  <strong>Dolore addominale:</strong>
+  <%= @microrna_patient.addpain %>
+</p>
+
+<p>
+  <strong>Artalgia:</strong>
+  <%= @microrna_patient.artalgia %>
+</p>
+
+<p>
+  <strong>Artrite:</strong>
+  <%= @microrna_patient.artrite %>
+</p>
+
+<p>
+  <strong>Altro:</strong>
+  <%= @microrna_patient.more %>
+</p>
+
+<p>
+  <strong>Urin:</strong>
+  <%= @microrna_patient.urin %>
+  <% for test in @microrna_patient.pathologicalurins %>
+  	<% if test.proteinuria.to_f > 0 %>
+    <p>proteinuria: <%= test.proteinuria %> mg/dl</p>
+    <% end %>
+    <% if test.creatinuria.to_f > 0 %>
+    <p>creatinuria: <%= test.creatinuria %> mg/dl</p>
+    <p>proteinura/creatinuria: <%= (test.proteinuria.to_f / test.creatinuria.to_f) %></p>
+    <% end %>
+    <% if test.ematuria.to_f > 0 %>
+    <p>ematuria: <%= test.ematuria %></p>
+    <% end %>
+  <% end %>
+
+
+<p>
+  <strong>Stick:</strong>
+  <%= @microrna_patient.stick %>
+</p>
+
+<% for test in @microrna_patient.stickurins %>	
+    <p>proteinuria: <%= test.proteinuria %> </p>
+    <p>ematuria: <%= test.ematuria %></p>
+    
+  <% end %>
+
+<p>
+  <strong>Microrna:</strong>
+  <%= @microrna_patient.microrna %>
+</p>
+
+<p>
+  <strong>Dna:</strong>
+  <%= @microrna_patient.dna %>
+</p>
+
+
+<%= link_to "Edit", edit_microrna_patient_path(@microrna_patient) %> | 
+<%= link_to 'Destroy', @microrna_patient, method: :delete, data: { confirm: 'Are you sure?' } %>|
+<%= link_to "New patient", new_microrna_patient_path %> | 
+ <%= link_to "View all patients", microrna_patients_path %> 
+

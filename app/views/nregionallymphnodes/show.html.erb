@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>N stage value:</strong>
+  <%= @nregionallymphnode.name %>
+</p>
+
+<%= link_to 'Edit', edit_nregionallymphnode_path(@nregionallymphnode) %> |
+<%= link_to 'Destroy', @nregionallymphnode, method: :delete, data: { confirm: 'Are you sure?' } %>  |
+<%= link_to 'View all N stages', nregionallymphnodes_path %> |
+<%= link_to 'New N stage', new_nregionallymphnode_path %> |
+<%= link_to 'New patient', new_patient_path %>

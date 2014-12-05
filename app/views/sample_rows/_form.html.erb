@@ -1,0 +1,57 @@
+<%= form_for(@rna_folder.sample_sheets) do |f| %>
+  <% if @rna_form.sample_sheet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@rna_form.sample_sheets.errors.count, "error") %> prohibited this sample_sheet from being saved:</h2>
+
+      <ul>
+      <% @rna_form.sample_sheets.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :fcid %><br>
+    <%= f.text_field :fcid %>
+  </div>
+  <div class="field">
+    <%= f.label :lane %><br>
+    <%= f.text_field :lane %>
+  </div>
+  <div class="field">
+    <%= f.label :sampleId %><br>
+    <%= f.text_field :sampleId %>
+  </div>
+  <div class="field">
+    <%= f.label :sampleRef %><br>
+    <%= f.text_field :sampleRef %>
+  </div>
+  <div class="field">
+    <%= f.label :index %><br>
+    <%= f.text_field :index %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :control %><br>
+    <%= f.text_field :control %>
+  </div>
+  <div class="field">
+    <%= f.label :recipe %><br>
+    <%= f.text_field :receipe %>
+  </div>
+  <div class="field">
+    <%= f.label :operator %><br>
+    <%= f.text_field :operator %>
+  </div>
+  <div class="field">
+    <%= f.label :sampleProject %><br>
+    <%= f.text_field :sampleProject %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

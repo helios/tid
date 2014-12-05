@@ -1,0 +1,7 @@
+<h1>Editing sample sheet</h1> 
+
+<%= render 'edit_form' %>
+
+<%= link_to 'Destroy', @sample_sheet, method: :delete, data: { confirm: 'Are you sure?' } %>|
+<%= link_to "New sample sheet", new_sample_sheet_path %> | 
+ <%= link_to "View all sample sheet", sample_sheets_path %>  

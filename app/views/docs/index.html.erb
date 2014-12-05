@@ -1,0 +1,102 @@
+<head>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+    <!-- Optional theme -->
+     <link href="vendor/assets/stylesheets/bootstrap-tokenfield.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.1/typeahead.bundle.min.js"></script>
+  <script src="vendor/assets/javascripts/bootstrap-tokenfield.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js" ></script> 
+  <script src="vendor/assets/javascripts/bootstrap-tokenfield.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js" ></script> 
+       <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
+   <script type="text/javascript" src="http://mottie.github.io/tablesorter/js/jquery.tablesorter.widgets.js"></script>
+
+
+  </head> 
+    <body>
+	 <div id="scrollable-dropdown-menu" class="col-md-8">
+  
+ <%= form_tag docs_path, :method => :get do %><%= text_field_tag :query_docs, 
+ 	params[:query_docs], autocomplete: "off", placeholder: "search" %>
+ 	</div>
+<%= submit_tag "   Search   ", :name => nil %>
+<% end %>
+
+<br></br>
+
+
+<div><%= link_to 'Upload new document', new_doc_path %></div>
+
+<br>
+
+<div class="col-md-2"></div>
+<table id="myTable" class="table table-striped"><head>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Researcher</th>
+      <th>Date</th>
+      <th>Tags</th>
+      <th>Comment</th>
+      <th>RnaId</th>
+      <th>SampleId</th>
+      <th>SampleSheet</th>
+	  <th>File</th>
+   <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @docs.each do |doc| %>
+      <tr>
+        <td> <% if doc.file_type? %> <%= doc.file_type.label %></td>
+        <% end %>
+        <td><%= doc.researcher %></td>
+        <td><%= doc.date %></td>
+        <td><%= doc.tags %></td>
+        <td><%= doc.comment %></td>
+      <td> 
+          <% doc.rna_forms_ids.first.split(', ').each do |rna| %>
+      	    <%= rna %>
+      	    <% RnaForm.where(rnaId: rna) %>
+            <%= link_to "view",  :controller => "rna_forms", :query_rnaId => rna %><br>
+           <% end %>
+       
+        </td>
+        
+        <td><% if doc.samples %>  
+        	<% doc.samples.first.split(', ').each do |sample| %>
+      	    <%= sample %>
+      	    <% RnaForm.where(sampleId: sample) %>
+            <%= link_to "view",  :controller => "rna_forms", :query_rnaId => sample %><br>
+  
+           <% end %>
+        <% end %></th>
+        
+         <td>  <% doc.sample_sheets_ids.first.split(', ').each do |sheet| %>
+            <%= sheet %>
+            <% SampleSheet.where(fcid: sheet) %>
+         <%= link_to "view",  :controller => "sample_sheets", :query_sample_sheet => sheet %><br>
+  
+             <br>
+             <% end %>
+         
+        
+        </td>
+        <td><%= link_to image_tag(doc.doc.url(:small)), doc.doc.url(:original) if doc.doc_file_name %></td>
+ 
+        <td><%= link_to 'Show', doc %></td>
+        <td><%= link_to 'Edit', edit_doc_path(doc) %></td>
+        <td><%= link_to 'Destroy', doc, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+
+  

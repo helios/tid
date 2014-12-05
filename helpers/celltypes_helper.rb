@@ -1,0 +1,2 @@
+module CelltypesHelper
+end

@@ -1,0 +1,12 @@
+<div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+  	<% @types = ["String", "Integer", "Boolean","Array", "Date", "DateTime","BigDecimal", 
+  		"Float", "Hash", "Range", "Regexp", "Symbol","Time", "TimeWithZone"] %>
+
+
+    <%= f.select :type, @types %>
+
+  </div>

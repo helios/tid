@@ -1,0 +1,6 @@
+<%= label_tag :secondclassification %><br />
+<% unless @secondclassification.blank? %>
+<%= collection_select(:patient, :secondclassification_id, @secondclassification, :id, :name, :prompt => true, :prompt => "-- Select --", :selected => @patient? @patient.secondclassification_id : "")%>
+<% else %>
+<%= select_tag "state_id","task_id", :prompt => "-- Select a State --" %>
+<% end %>

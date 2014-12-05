@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  street: 
+  number: 
+  model11_name: 
+
+two:
+  street: 
+  number: 
+  model11_name: 

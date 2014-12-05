@@ -1,0 +1,61 @@
+<p>
+  <strong>Sorting date:</strong>
+  <%= @rna_form.sortingDate if @rna_form  %><br />
+ <strong>Cell type:</strong>
+  <%= @rna_form.cell.label if @rna_form.cell  %><br />
+ <strong>No. cells:</strong>
+  <%= @rna_form.noCells if @rna_form %><br />
+<strong>No. Aliquots:</strong>
+  <%= @rna_form.noAliquots if @rna_form %><br />
+ <strong>Cells/aliquot:</strong>
+  <% if @rna_form.noCells %>
+  <%= ((@rna_form.noCells) / (@rna_form.noAliquots)) if (@rna_form.noAliquots) %><br />
+  <% end %>
+<strong>Purity:</strong>
+  <%= @rna_form.purity if @rna_form%><br />
+<strong>Vol. lysis buffer/aliquot:</strong>
+  <%= @rna_form.volBufferPerAliquot if @rna_form %><br />
+ <strong>RNA isolation from no. aliquots:</strong>
+  <%= @rna_form.noAliquotsRnaIsolation if @rna_form %><br />
+ <strong>RNA isolation date:</strong>
+  <%= @rna_form.rnaIsolationDate if @rna_form %><br />
+ <strong>RNA id:</strong>
+  <%= @rna_form.rnaId if @rna_form %><br />
+ <strong>Dilution volume:</strong>
+  <%= @rna_form.volDilution if @rna_form%><br />
+ <strong>RIN</strong>
+  <% if @rna_form %>
+  <% if @rna_form.rins %>
+  <% for rin in @rna_form.rins do %>
+  <% if rin.measure?%>
+    <%= rin.measure %> <%= rin.date %>  <br />
+  <% end %>
+  <% end %>
+  <% end %>
+<% end %>
+  <strong>RNA concentration:</strong>
+  <%= @rna_form.rnaConc if @rna_form %><br />
+ <strong>Total cells:</strong>
+  <%= @rna_form.totalCells if @rna_form %><br />
+<strong>total ng:</strong>
+  <%= @rna_form.ngTotal if @rna_form %><br />
+ <strong>used ng:</strong>
+  <%= @rna_form.ngUsed if @rna_form %><br />
+<strong>remaining ng:</strong>
+  <% if @rna_form.ngTotal %>
+  <%= @rna_form.available %><br />
+  <% end %>
+<strong>Operator:</strong>
+  <%= @rna_form.operator if @rna_form %><br />
+<strong>Sample index:</strong>
+  <%= @rna_form.sampleIndex  if @rna_form %><br />
+ <strong>Sample id:</strong>
+  <%= @rna_form.sampleId if @rna_form %><br />
+
+<br />
+<br />
+
+<%= link_to "Edit", edit_rna_form_path(@rna_form) %> | 
+<%= link_to 'Destroy', @rna_form, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to "New RNA form", new_rna_form_path %> | 
+ <%= link_to "View all RNA forms", rna_forms_path %> |

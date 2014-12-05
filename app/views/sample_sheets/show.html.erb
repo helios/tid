@@ -1,0 +1,53 @@
+
+  <strong>FCID:</strong>
+  <strong><%= @sample_sheet.fcid %></strong> <br/ >
+  <br/ >
+
+<div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Lane</th>
+      <th>Sample id</th>
+      <th>Sample Ref</th>
+      <th>Index</th>
+      <th>Description</th>
+      <th>Control</th>
+      <th>Receipe</th>
+      <th>Operator</th>
+      <th>Sample Project</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+<tbody>
+  	
+    <% @sample_sheet.sample_rows.each do |sample_row| %>
+      <tr>
+
+        <td><%= sample_row.lane %></td>
+        <td><%= sample_row.sampleId %></td>
+        <td><%= sample_row.sampleRef %></td>
+        <td><%= sample_row.index %></td>
+        <td><%= sample_row.description %></td>
+        <td><%= sample_row.control %></td>
+        <td><%= sample_row.receipe %></td>
+        <td><%= sample_row.operator %></td>
+        <td><%= sample_row.sampleProject %></td>     
+    <% end %> 
+  </tbody>
+</div>
+</table>
+
+
+<p>
+  
+  <%= link_to "Download CSV", sample_sheet_sample_rows_path(@sample_sheet, format: "csv")  %> 
+</p>
+
+
+<%= link_to "Edit", edit_sample_sheet_path(@sample_sheet) %> | 
+<%= link_to 'Destroy', @sample_sheet, method: :delete, data: { confirm: 'Are you sure?' } %>|
+<%= link_to "New sample sheet", new_sample_sheet_path %> | 
+ <%= link_to "View all sample sheets", sample_sheets_path %>  
+
+

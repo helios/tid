@@ -1,0 +1,21 @@
+
+
+<p>
+  <b>Name:</b>
+  <%= @firstclassification.name %>
+</p>
+
+<p>
+  <b>Second classifications:</b><br/>
+  <% for second in @firstclassification.secondclassifications do  %>
+  <%= second.name %><br/>
+  <%end%>
+</p>
+
+<%= link_to 'Edit', edit_firstclassification_path(@firstclassification) %> |
+<%= link_to 'Destroy', @firstclassification, method: :delete, data: { confirm: 'Are you sure?' } %>  |
+<%= link_to 'New classification', new_firstclassification_path %> |
+<%= link_to 'View all classifications', firstclassifications_path %> |
+<%= link_to 'new patient', new_patient_path %>
+
+

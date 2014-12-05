@@ -1,0 +1,67 @@
+<head>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+    <!-- Optional theme -->
+     <link href="vendor/assets/stylesheets/bootstrap-tokenfield.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.1/typeahead.bundle.min.js"></script>
+  <script src="vendor/assets/javascripts/bootstrap-tokenfield.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js" ></script> 
+  <script src="vendor/assets/javascripts/bootstrap-tokenfield.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js" ></script> 
+       <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
+   <script type="text/javascript" src="http://mottie.github.io/tablesorter/js/jquery.tablesorter.widgets.js"></script>
+
+
+  </head> 
+  <body>
+        
+    
+
+     <div id="scrollable-dropdown-menu" class="col-md-5">
+<br><br/>
+<%%= form_tag <%= plural_table_name %>_path, :method => 'get' do %>
+
+<%%= text_field_tag :query_<%= plural_table_name %>, params[:query_<%= plural_table_name %>],autocomplete: "off", placeholder: "leave blank to see all" %>
+<%%= submit_tag "Search", :name => nil %>
+
+</div>
+<%% end %>
+<% 2.times do %> 
+<br></br>
+  <% end %> 
+     <div class="col-md-8"></div>
+<div><%%= link_to 'New <%= singular_table_name %> ', new_<%= singular_table_name %>_path %></div>
+<div class="col-md-8">
+<table id="myTable" class="table table-striped"><thead>
+    <tr>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+      <th><%= attribute.human_name %></th>
+<% end -%>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+ <tbody>
+    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+      <tr>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+        <td><%%= <%= singular_table_name %>.<%= attribute.name %> %>
+            <%% if defined?(<%= attribute.human_name.to_s.split('_').first.split(' ').first.pluralize.downcase%>_path) %>
+            <%%= link_to "view", :controller => "<%= attribute.human_name.to_s.split('_').first.split(' ').first.pluralize.downcase%>", :query_<%= attribute.human_name.to_s.split('_').first.split(' ').first.pluralize.downcase%> => <%= singular_table_name %>.<%= attribute.name %> %>
+            <%% end %>
+        </td>
+<% end -%>
+        <td><%%= link_to 'Show', <%= singular_table_name %> %></td>
+        <td><%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name %>) %></td>
+        <td><%%= link_to 'Destroy', <%= singular_table_name %>, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <%% end %>
+  </tbody>
+</table>
+
+<br>
+</ body>
+<%%= link_to 'New <%= human_name %>', new_<%= singular_table_name %>_path %>

@@ -1,0 +1,6 @@
+<%= label_tag :secondclassification %><br />
+<% unless @secondclassification.blank? %>
+    <%= collection_select(:user, :secondclassification_id, @secondclassification, :id, :name, :prompt => true, :selected => @patient?  @patient.secondclassification_id : "")%>
+<% else %>
+    <%= select_tag "secondclassification_id","task_id" %>
+<% end %>

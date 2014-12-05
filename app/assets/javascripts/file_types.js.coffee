@@ -1,0 +1,22 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+$ ->
+  file_types = new Bloodhound(
+    datumTokenizer: (d) ->
+      Bloodhound.tokenizers.whitespace d.label
+
+    queryTokenizer: Bloodhound.tokenizers.whitespace
+    limit: 10
+    prefetch: "/file_types.json"
+  )
+  file_types.initialize()
+  $("#query_file_types").tokenfield typeahead: [
+    null
+    {
+      displayKey: "label"
+      source: file_types.ttAdapter()
+    }
+  ]
+  
+  return

@@ -1,0 +1,2 @@
+class ClinicsLungsController < ApplicationController
+end

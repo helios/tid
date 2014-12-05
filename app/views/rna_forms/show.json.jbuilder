@@ -1,0 +1,1 @@
+json.extract! @rna_form, :id, :sortingDate, :noCells, :cell_id, :noAliquots, :cellsPerAliquot, :purity, :volBufferPerAliquot, :noAliquotsRnaIsolation, :rnaIsolationDate, :rnaId, :volDilution, :rnaConc, :totalCells, :ngTotal, :ngUsed, :ngRemaining, :operator, :sampleIndex, :sampleId, :created_at, :updated_at

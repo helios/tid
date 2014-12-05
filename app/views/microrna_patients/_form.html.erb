@@ -1,0 +1,75 @@
+<%= form_for(@microrna_patient) do |f| %>
+  <% if @microrna_patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@microrna_patient.errors.count, "error") %> prohibited this microrna_patient from being saved:</h2>
+
+      <ul>
+      <% @microrna_patient.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label "Data di nascita" %><br>
+    <%= f.text_field :datebirth %>
+  </div>
+  <div class="field">
+    <%= f.label "Sesso" %><br>
+    <%= f.select :gender, ["","F", "M"] %>
+  </div>
+  <div class="field">
+    <%= f.label "Dolore addominale" %><br>
+    <%= f.select :addpain, [["", ""], ["SI" , true], ["NO" , false]] %>
+  </div>
+  <div class="field">
+    <%= f.label :artalgia, "Artalgia" %><br>
+    <%= f.select :artalgia, [["", ""], ["SI" , true], ["NO" , false]]  %>
+  </div>
+  <div class="field">
+    <%= f.label :artrite, "Artrite" %><br>
+    <%= f.select :artrite, [["", ""], ["SI" , true], ["NO" , false]]  %>
+  </div>
+  <div class="field">
+    <%= f.label :more, "Altro" %><br>
+    <%= f.text_area :more %>
+  </div>
+  <div class="field">
+  	<%= f.label :urin, "Esame urine patologico" %><br>
+    <%= f.select :urin, [["", ""], ["SI" , true], ["NO" , false]], :selected => @microrna_patient.urin %>
+  </div>
+
+   <div id="urin_test">
+ <%= f.fields_for :pathologicalurins do |builder| %>
+    <%= render "urin_fields", :f => builder %>  
+  <% end %>
+    </div>
+
+  
+  
+  <div class="field">
+    <%= f.label :stick, "Stick urine patologico" %><br>
+    <%= f.select :stick, [["", ""], ["SI" , true], ["NO" , false]]  %>
+  </div>
+  
+  <div id="urin_stick">
+ <%= f.fields_for :stickurins do |builder| %>
+    <%= render "stick_urins", :f => builder %>  
+  <% end %>
+    </div>
+  
+  
+  <div class="field">
+    <%= f.label :microrna, "microRNA" %><br>
+    <%= f.select :microrna, [["", ""], ["SI" , true], ["NO" , false]]  %>
+  </div>
+  <div class="field">
+    <%= f.label :dna, "DNA" %><br>
+    <%= f.select :dna, [["", ""], ["SI" , true], ["NO" , false]]  %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Send"%>
+  </div>
+<% end %>

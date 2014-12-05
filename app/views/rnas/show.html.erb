@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @rna.date %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @rna.comment %>
+</p>
+
+<%= link_to 'Edit', edit_rna_path(@rna) %> |
+<%= link_to 'Back', rnas_path %>

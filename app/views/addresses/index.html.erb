@@ -1,0 +1,77 @@
+<head>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+    <!-- Optional theme -->
+     <link href="vendor/assets/stylesheets/bootstrap-tokenfield.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.1/typeahead.bundle.min.js"></script>
+  <script src="vendor/assets/javascripts/bootstrap-tokenfield.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js" ></script> 
+  <script src="vendor/assets/javascripts/bootstrap-tokenfield.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js" ></script> 
+       <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
+   <script type="text/javascript" src="http://mottie.github.io/tablesorter/js/jquery.tablesorter.widgets.js"></script>
+
+
+  </head> 
+  <body>
+        
+    
+
+     <div id="scrollable-dropdown-menu" class="col-md-5">
+<br><br/>
+<%= form_tag addresses_path, :method => 'get' do %>
+
+<%= text_field_tag :query_addresses, params[:query_addresses],autocomplete: "off", placeholder: "leave blank to see all" %>
+<%= submit_tag "Search", :name => nil %>
+
+</div>
+<% end %>
+ 
+<br></br>
+   
+<br></br>
+   
+     <div class="col-md-8"></div>
+<div><%= link_to 'New address ', new_address_path %></div>
+<div class="col-md-8">
+<table id="myTable" class="table table-striped"><thead>
+    <tr>
+      <th>Street</th>
+      <th>Number</th>
+      <th>Model11 name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+ <tbody>
+    <% @addresses.each do |address| %>
+      <tr>
+        <td><%= address.street %>
+            <% if defined?(streets_path) %>
+            <%= link_to "view", :controller => "streets", :query_streets => address.street %>
+            <% end %>
+        </td>
+        <td><%= address.number %>
+            <% if defined?(numbers_path) %>
+            <%= link_to "view", :controller => "numbers", :query_numbers => address.number %>
+            <% end %>
+        </td>
+        <td><%= address.model11_name %>
+            <% if defined?(model11s_path) %>
+            <%= link_to "view", :controller => "model11s", :query_model11s => address.model11_name %>
+            <% end %>
+        </td>
+        <td><%= link_to 'Show', address %></td>
+        <td><%= link_to 'Edit', edit_address_path(address) %></td>
+        <td><%= link_to 'Destroy', address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+</ body>
+<%= link_to 'New Address', new_address_path %>

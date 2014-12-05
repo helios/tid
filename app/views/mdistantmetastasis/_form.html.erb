@@ -1,0 +1,21 @@
+<%= form_for(@mdistantmetastasi) do |f| %>
+  <% if @mdistantmetastasi.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mdistantmetastasi.errors.count, "error") %> prohibited this mdistantmetastasis from being saved:</h2>
+
+      <ul>
+      <% @mdistantmetastasi.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :M_stage%><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit "send"%>
+  </div>
+<% end %>

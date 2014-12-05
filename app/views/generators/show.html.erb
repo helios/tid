@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @generator.name %>
+</p>
+<p>
+  <strong>Fields:</strong><br>
+  <% @generator.attrs.each do  |field| %>
+  	<%=  field.name  %>
+  	<%= "type: " + field.type %><br>
+  	<% end %>
+</p>
+
+<p>
+  <strong>References the models:</strong><br>
+  <% if @generator.refgenerators %>
+<% @generator.refgenerators_ids.first.split(', ').each do |ref|%>
+        	<%= ref %>
+        	
+        	<%= link_to "view",  :controller => "generators", :query_generators => ref %><br>
+        	<% end %><br><br>
+	<% end %>
+
+  	
+</p>
+</p>
+<Strong>Notes</strong>
+	<%= @generator.notes if  @generator.notes %>
+	<br><br/>
+	
+<%= link_to 'Edit', edit_generator_path(@generator) %> |
+<%= link_to 'View all models', generators_path %>

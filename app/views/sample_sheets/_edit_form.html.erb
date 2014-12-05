@@ -1,0 +1,55 @@
+<%= form_for(@sample_sheet) do |f| %>
+  <% if @sample_sheet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sample_sheet.errors.count, "error") %> prohibited this run from being saved:</h2>
+
+      <ul>
+      <% @sample_sheet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  
+    <div class="field">
+    <%= f.label :fcid %><br>
+    <%= f.text_field :fcid %>
+  </div>
+  
+<table class ="table table-bordered">
+<head>
+<th class="col-md-2"> </th>
+	<th class="col-md-2">lane </th>
+	<th class="col-md-2">sample id </th>
+	<th class="col-md-2">sample ref</th>
+	<th class="col-md-2">index</th>
+	<th class="col-md-2">description</th>
+	<th class="col-md-2">control</th>
+	<th class="col-md-2">receipe</th>
+	<th class="col-md-2">operator</th>
+	<th class="col-md-2">sample project</th>	
+
+</head>
+<tbody>
+
+<%= f.fields_for :sample_rows do |builder| %>
+    <%= render "sample_row_fields", :f => builder %>   
+  <% end %>
+  
+   </tbody>
+   </table>
+     
+  <br><br/>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+  
+  
+
+  
+<% end %>
+
+
+
+  

@@ -1,0 +1,43 @@
+
+<table>
+  <thead>
+    <tr>
+    
+      <th>Lane</th>
+      <th>Sampleid</th>
+      <th>Sampleref</th>
+      <th>Index</th>
+      <th>Description</th>
+      <th>Control</th>
+      <th>Receipe</th>
+      <th>Operator</th>
+      <th>Sampleproject</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  	
+    <% @sample_rows.each do |sample_row| %>
+      <tr>
+       
+        <td><%= sample_row.lane %></td>
+        <td><%= sample_row.sampleId %></td>
+        <td><%= sample_row.sampleRef %></td>
+        <td><%= sample_row.index %></td>
+        <td><%= sample_row.description %></td>
+        <td><%= sample_row.control %></td>
+        <td><%= sample_row.receipe %></td>
+        <td><%= sample_row.operator %></td>
+        <td><%= sample_row.sampleProject %></td>
+       
+        
+    <% end %>
+   
+  </tbody>
+ 
+</table>
+
+<br>
+
+

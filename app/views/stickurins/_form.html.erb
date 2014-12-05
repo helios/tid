@@ -1,0 +1,25 @@
+<%= form_for(@stickurin) do |f| %>
+  <% if @stickurin.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@stickurin.errors.count, "error") %> prohibited this stickurin from being saved:</h2>
+
+      <ul>
+      <% @stickurin.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :proteinuria, %><br>
+    <%= f.text_field :proteinuria %>
+  </div>
+  <div class="field">
+    <%= f.label :ematuria %><br>
+    <%= f.text_field :ematuria %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

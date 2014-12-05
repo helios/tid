@@ -1,0 +1,67 @@
+<head>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+    <!-- Optional theme -->
+     <link href="vendor/assets/stylesheets/bootstrap-tokenfield.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.1/typeahead.bundle.min.js"></script>
+  <script src="vendor/assets/javascripts/bootstrap-tokenfield.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js" ></script> 
+  <script src="vendor/assets/javascripts/bootstrap-tokenfield.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js" ></script> 
+       <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
+   <script type="text/javascript" src="http://mottie.github.io/tablesorter/js/jquery.tablesorter.widgets.js"></script>
+
+
+  </head> 
+    <body>
+	
+	 <div id="scrollable-dropdown-menu" class="col-md-5">
+ <%= form_tag secondclassifications_path, :method => :get do %><%= text_field_tag :query_classification, 
+ 	params[:query_classification], autocomplete: "off", placeholder: "leave blank to see all second and second classifications" %>
+</div>
+
+<%= submit_tag "   Search   ", :name => nil %>
+<% end %>
+<br>
+<br>
+ <div class="col-md-2">
+<%= link_to 'Add second classification', new_secondclassification_path %>
+</div>
+ 
+<br>
+<br>
+<div class="col-md-2"></div>
+<table id="myTable" class="table table-striped"><head>
+  <thead>
+    <tr>
+      <th>second classifications</th>
+         </tr>
+  </thead>
+
+  <tbody>
+
+    <% @classifications.each do |classification| %>
+      <tr>
+      	
+        <td><%= classification.name %></td>
+        
+		
+
+		
+       
+        	<td><%= link_to 'Show', classification %></td> 
+       
+  		
+		      	<% end %>
+  	</tr>
+       
+       
+      	
+ 
+      
+      </table>
+ 
+      </body>

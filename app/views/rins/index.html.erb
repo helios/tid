@@ -1,0 +1,27 @@
+<h1>Listing rins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Measure</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rins.each do |rin| %>
+      <tr>
+        <td><%= rin.measure %></td>
+        <td><%= rin.date %></td>
+        <td><%= link_to 'Show', rin %></td>
+        <td><%= link_to 'Edit', edit_rin_path(rin) %></td>
+        <td><%= link_to 'Destroy', rin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Rin', new_rin_path %>

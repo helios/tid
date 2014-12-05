@@ -1,0 +1,33 @@
+<%= form_for(@pathologicalurin) do |f| %>
+  <% if @pathologicalurin.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pathologicalurin.errors.count, "error") %> prohibited this pathologicalurin from being saved:</h2>
+
+      <ul>
+      <% @pathologicalurin.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :proteinuria %><br>
+    <%= f.text_field :proteinuria %>
+  </div>
+  <div class="field">
+    <%= f.label :creatinuria %><br>
+    <%= f.text_field :creatinuria %>
+  </div>
+  <div class="field">
+    <%= f.label :ratio %><br>
+    <%= f.text_field :ratio %>
+  </div>
+  <div class="field">
+    <%= f.label :ematuria %><br>
+    <%= f.text_field :ematuria %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,18 @@
+<H1>microrna database</h1>
+
+<ul class="nav nav-pills nav-stacked">
+	<%= link_to "new patient", new_microrna_patient_path, class: "btn btn-large btn-primary" %>
+ <%= link_to "view all patients",microrna_patients_path, class: "btn btn-large btn-primary" %>
+ 
+  <br></br>
+  <br></br>
+ 
+  <%= link_to microrna_patients_path do %> 
+     <i class="fa fa-search fa-1x""> </i>
+        <% end %>
+ <%= link_to "search ", '', class: "btn btn-large btn-primary" %>  <br></br>
+ <%= link_to microrna_patients_path do %> 
+     <i class="fa fa-search fa-1x""> </i>
+        <% end %>
+ <%= link_to "search patient", '', class: "btn btn-large btn-primary" %>  <br></br>
+  </ul>

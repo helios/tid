@@ -1,0 +1,83 @@
+
+
+<p>
+  <strong>Histology number:</strong>
+  <%= @patient.histology_number %>
+</p>
+
+<p>
+  <strong>Patient:</strong>
+  <%= @patient.patient_id %>
+</p>
+
+
+<p>
+  <strong>Date of birth:</strong>
+  <%= @patient.date_of_birth %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @patient.gender %>
+</p>
+
+<p>
+  <strong>Smoker:</strong>
+  <%= @patient.smoker %>
+</p>
+
+<p>
+  <strong>Date of biopsy:</strong>
+  <%= @patient.date_of_biopsy %>
+</p>
+
+<p>
+  <strong>Distance of healthy tissue biopsy from tumor (cm):</strong>
+  <%= @patient.distance %>
+</p>
+
+<p>
+  <strong>First Classification:</strong>
+  <%= @patient.firstclassification.name if @patient.firstclassification %>
+</p>
+
+<p>
+  <strong>Second Classification:</strong>
+  <%= @patient.secondclassification.name if @patient.secondclassification %>
+</p>
+
+  <strong>T-primary tumor:</strong>
+  <%= @patient.tprimarytumor.name if @patient.tprimarytumor? %>
+</p>
+
+<p>
+  <strong>N-regional lymph nodes:</strong>
+  <%= @patient.nregionallymphnode.name if @patient.nregionallymphnode? %>
+</p>
+
+<p>
+  <strong>M-distant metastasis:</strong>
+  <%= @patient.mdistantmetastasi.name if @patient.mdistantmetastasi %>
+</p>
+
+<p>
+  <strong>G-Histopathological grading:</strong>
+  <%= @patient.grading.name if @patient.grading? %>
+</p>
+
+  <strong>Therapies</strong>
+  <% for therapy in @patient.therapies do %>
+  <p>  <%= therapy.drug %> from:<%= therapy.from %> to <%= therapy.to %> </p>
+  <% end %>
+
+  <strong>Other pathologies</strong>
+  <% for pathology in @patient.pathologies %>
+    <p><%= pathology.name %> from <%= pathology.from %> to <%= pathology.to %></p>
+  <% end %>
+
+<br></br>
+
+
+
+<%= link_to 'Edit', edit_patient_path(@patient) %> |
+<%= link_to 'Back', patients_path %>

@@ -1,0 +1,21 @@
+<%= form_for(@tprimarytumor) do |f| %>
+  <% if @tprimarytumor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tprimarytumor.errors.count, "error") %> prohibited this tprimarytumor from being saved:</h2>
+
+      <ul>
+      <% @tprimarytumor.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :T_stage %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit "send"%>
+  </div>
+<% end %>

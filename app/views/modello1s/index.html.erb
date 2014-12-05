@@ -1,0 +1,71 @@
+<head>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+    <!-- Optional theme -->
+     <link href="vendor/assets/stylesheets/bootstrap-tokenfield.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.10.1/typeahead.bundle.min.js"></script>
+  <script src="vendor/assets/javascripts/bootstrap-tokenfield.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js" ></script> 
+  <script src="vendor/assets/javascripts/bootstrap-tokenfield.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-tokenfield/0.12.0/bootstrap-tokenfield.js" ></script> 
+       <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.9.1/jquery.tablesorter.min.js"></script>
+   <script type="text/javascript" src="http://mottie.github.io/tablesorter/js/jquery.tablesorter.widgets.js"></script>
+
+
+  </head> 
+  <body>
+        
+    
+
+     <div id="scrollable-dropdown-menu" class="col-md-5">
+<br><br/>
+<%= form_tag modello1s_path, :method => 'get' do %>
+
+<%= text_field_tag :query_modello1s, params[:query_modello1s],autocomplete: "off", placeholder: "leave blank to see all" %>
+<%= submit_tag "Search", :name => nil %>
+
+</div>
+<% end %>
+ 
+<br></br>
+   
+<br></br>
+   
+     <div class="col-md-8"></div>
+<div><%= link_to 'New modello1 ', new_modello1_path %></div>
+<div class="col-md-8">
+<table id="myTable" class="table table-striped"><thead>
+    <tr>
+      <th>First</th>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+ <tbody>
+    <% @modello1s.each do |modello1| %>
+      <tr>
+        <td><%= modello1.first %>
+            <% if defined?(firsts_path) %>
+            <%= link_to "view", :controller => "firsts", :query_firsts => modello1.first %>
+            <% end %>
+        </td>
+        <td><%= modello1.name %>
+            <% if defined?(names_path) %>
+            <%= link_to "view", :controller => "names", :query_names => modello1.name %>
+            <% end %>
+        </td>
+        <td><%= link_to 'Show', modello1 %></td>
+        <td><%= link_to 'Edit', edit_modello1_path(modello1) %></td>
+        <td><%= link_to 'Destroy', modello1, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+</ body>
+<%= link_to 'New Modello1', new_modello1_path %>

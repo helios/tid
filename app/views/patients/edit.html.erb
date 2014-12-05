@@ -1,0 +1,11 @@
+<h1>Editing patient</h1>
+
+<%= render 'edit_form' %>
+  
+
+<%= link_to 'Destroy', @patient, method: :delete, data: { confirm: 'Are you sure?' } %>|
+<%= link_to "New patient", new_patient_path %> | 
+ <%= link_to "View all patients", patients_path %> 
+
+
+

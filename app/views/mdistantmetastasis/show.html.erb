@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>M stage value:</strong>
+  <%= @mdistantmetastasi.name %>
+</p>
+
+<%= link_to 'Edit', edit_mdistantmetastasi_path(@mdistantmetastasi) %> |
+<%= link_to 'Destroy', @mdistantmetastasi, method: :delete, data: { confirm: 'Are you sure?' } %>  |
+<%= link_to 'View all M stages', mdistantmetastasis_path %> |
+<%= link_to 'New M stage', new_mdistantmetastasi_path %> |
+<%= link_to 'New patient', new_patient_path %>
